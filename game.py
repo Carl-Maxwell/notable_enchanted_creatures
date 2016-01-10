@@ -1,4 +1,4 @@
-from tdl import Console, TDLError, Window, absolute_import, division, event, flush, forceResolution, force_resolution, getFPS, getFullscreen, get_fps, get_fullscreen, init, int_types, map, noise, print_function, screenshot, setFPS, setFont, setFullscreen, setTitle, set_font, set_fps, set_fullscreen, set_title, style, unicode_literals
+from importworkaround import *
 
 SCREEN_WIDTH  = 80
 SCREEN_HEIGHT = 50
@@ -6,34 +6,37 @@ SCREEN_HEIGHT = 50
 LIMIT_FPS = 20
 
 def handle_events(events):
+    exit = False
+
     for event in events:
         if event.type == 'KEYDOWN':
-            handle_key(event)
+            exit = exit or handle_key(event)
 
-def handle_key(event):
-    return
-    global playerx, playery
-
-    key = console_check_for_keypress(events)  #real-time
-    #key = console_wait_for_keypress(True)  #turn-based
-
-    if key.vk == KEY_ENTER and key.lalt:
-        set_fullscreen(not get_fullscreen())
-
-    elif key.vk == KEY_ESCAPE:
+    if exit:
         return True
 
-    #movement keys
-    if console_is_key_pressed(KEY_UP):
+def handle_key(event):
+    global playerx, playery
+
+    # if False #key.vk == KEY_ENTER and key.lalt: # enter + alt = toggle fullscreen
+        # set_fullscreen(not get_fullscreen())
+
+    key = event.keychar
+
+    if key == 'F11':
+        set_fullscreen(not get_fullscreen())
+    elif key == 'ESCAPE':
+        return True
+
+    # character movement
+
+    elif key == 'UP' or key.lower() == 'w':
         playery -= 1
-
-    elif console_is_key_pressed(KEY_DOWN):
+    elif key == 'DOWN' or key.lower() == 's':
         playery += 1
-
-    elif console_is_key_pressed(KEY_LEFT):
+    elif key == 'LEFT' or key.lower() == 'a':
         playerx -= 1
-
-    elif console_is_key_pressed(KEY_RIGHT):
+    elif key == 'RIGHT' or key.lower() == 'd':
         playerx += 1
 
 
