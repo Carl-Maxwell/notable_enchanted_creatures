@@ -37,9 +37,9 @@ def handle_key(event):
         playerx += 1
 
 
-#############################################
+#
 # Initialization & Main Loop
-#############################################
+#
 
 set_font('arial10x10.png', greyscale=True, altLayout=True)
 console = init(SCREEN_WIDTH, SCREEN_HEIGHT, 'python/tutorial')
