@@ -18,9 +18,6 @@ def handle_events(events):
 def handle_key(event):
     global playerx, playery
 
-    # if False #key.vk == KEY_ENTER and key.lalt: # enter + alt = toggle fullscreen
-        # set_fullscreen(not get_fullscreen())
-
     key = event.keychar
 
     if key == 'F11':
