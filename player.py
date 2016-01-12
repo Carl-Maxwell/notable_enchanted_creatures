@@ -1,16 +1,17 @@
-import input_manager
+import controls
+from character import Character
 
-x = 0
-y = 0
+class Player(Character):
+    def __init__(self):
+        self.x = 0
+        self.y = 0
 
-def tick():
-    global x, y
-
-    if input_manager.key_states['w'] or input_manager.key_states['up']:
-        y -= 1
-    elif input_manager.key_states['s'] or input_manager.key_states['down']:
-        y += 1
-    elif input_manager.key_states['a'] or input_manager.key_states['left']:
-        x -= 1
-    elif input_manager.key_states['d'] or input_manager.key_states['right']:
-        x += 1
+    def tick(self):
+        if Controls.key_states['w'] or Controls.key_states['up']:
+            self.y -= 1
+        elif Controls.key_states['s'] or Controls.key_states['down']:
+            self.y += 1
+        elif Controls.key_states['a'] or Controls.key_states['left']:
+            self.x -= 1
+        elif Controls.key_states['d'] or Controls.key_states['right']:
+            self.x += 1

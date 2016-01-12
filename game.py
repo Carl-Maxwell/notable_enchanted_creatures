@@ -1,7 +1,7 @@
 from importworkaround import *
 
-import input_manager
-import player
+import controls
+from player import Player
 
 SCREEN_WIDTH  = 80
 SCREEN_HEIGHT = 50
@@ -27,9 +27,9 @@ while not event.is_window_closed():
 
     console.draw_char(player.x, player.y, ' ')
 
-    input_manager.handle_events(event.get())
+    Controls.handle_events(event.get())
 
     player.tick()
 
-    if input_manager.key_states['escape']:
+    if Controls.key_states['escape']:
         break
